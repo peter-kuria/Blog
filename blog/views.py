@@ -19,7 +19,7 @@ def post_list(request, tag_slug=None):
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         object_list = object_list.filter(tags__in=[tag])
-    paginator = Paginator(object_list, 4) # 4 posts in each page
+    paginator = Paginator(object_list, 10) # 4 posts in each page
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)

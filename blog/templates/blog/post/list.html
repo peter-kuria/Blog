@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-
+{% load blog_tags %}
 {% block title %}My blog
 {% endblock%}
 
@@ -22,8 +22,8 @@
         {% if not forloop.last %}, {% endif %}
       {% endfor %}
      </p>
-    <p class="date">Published{{post.publish}} by {{post.author}}</p>
-    {{post.body}}
+    <p class="date">Published {{post.publish}} by {{post.author}}</p>
+    {{ post.body|markdown|truncatewords_html:30 }}
  {% endfor %}
     {% include "pagination.html" with page=posts %}
 {% endblock %}    
